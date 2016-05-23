@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>RailsWithWebpack</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag webpack_asset_path('application.css') %>
+  </head>
+
+  <body>
+    <%= yield %>
+    <%= javascript_include_tag webpack_asset_path('application.js') %>
+  </body>
+</html>
