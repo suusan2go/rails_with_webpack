@@ -7,10 +7,8 @@ const NODE_ENV = process.env.NODE_ENV
 const DEBUG = NODE_ENV === 'development' || NODE_ENV === undefined
 const devtool = DEBUG ? '#source-map' : 'eval'
 const base_filename = DEBUG ? '[name]' : '[name]-[hash]'
-const scss_loader =  ExtractTextPlugin.extract("style-loader", "css-loader!sass-loader")
-const css_loader =  ExtractTextPlugin.extract("style-loader", "css-loader")
+const scss_loader =  "sass-loader"
 const plugins = [
-  new ExtractTextPlugin(`${base_filename}.css`)
 ]
 const babel_loaders = ['babel']
 const entry_scripts = ['./frontend/javascripts/index.js']
@@ -44,7 +42,7 @@ module.exports = {
     application: entry_scripts
   },
   output: {
-    path: __dirname + '/server/public/assets',
+    path: __dirname + '/public/assets',
     filename: `${base_filename}.js`,
     publicPath: publicPath
   },
@@ -59,11 +57,7 @@ module.exports = {
       },
       {
         test: /\.scss$/,
-        loader: scss_loader
-      },
-      {
-        test: /\.css$/,
-        loader: css_loader
+        loaders: ["style", "css", "sass"]
       },
       {
         test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
